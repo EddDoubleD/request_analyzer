@@ -7,8 +7,11 @@ if __name__ == '__main__':
     # Загружаем данные
     df = pd.read_csv(directory + '/result.csv')
 
-    quantiles_count = df['count'].quantile([0.25, 0.5, 0.75, 0.98])
+    quantiles_count = df['count'].quantile([0.9, 0.925, 0.95, 0.975, 0.99])
     print("Квантили количества параметров:", quantiles_count)
+
+    quantiles_count = df['time'].quantile([0.9, 0.925, 0.95, 0.975, 0.99, 0.999])
+    print("Квантили времени выполнения:", quantiles_count)
 
     # Фильтрация запросов без ошибок
     no_error_df = df[df['failed'] == False]
